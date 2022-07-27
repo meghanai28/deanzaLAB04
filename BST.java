@@ -14,15 +14,24 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public int countNodes ( )
+	public boolean isEmpty()
 	{
-		return countNodes(root);
+		return root == null;
+	}
+	
+	
+	/*
+	 * 
+	 */
+	public int count ( )
+	{
+		return count(root);
 	}
 	
 	/*
 	 * 
 	 */
-	private int countNodes(BSTNode node)
+	private int count(BSTNode node)
 	{
 		if(node == null)
 		{
@@ -30,61 +39,36 @@ private BSTNode root;
 		}
 		else
 		{
-			return 1 + countNodes(node.getLeftChild()) 
-			+ countNodes(node.getRightChild());
+			return 1 + count(node.getLeftChild()) 
+			+ count(node.getRightChild());
 		}
 	}
 	
 	/*
 	 * 
 	 */
-	public Dollar min()
+	public BSTNode find(Dollar val) throws Exception
 	{
-		return min(root).getData();
+		return find(root,val);
 	}
 	
 	/*
 	 * 
 	 */
-	private BSTNode min(BSTNode node) 
+	private BSTNode find(BSTNode node, Dollar val) throws Exception
 	{
-		if(node == null)
-		{
-			return null;
-		}
-		if(node.getLeftChild() == null)
+		if(node == null || node.getData().isEqual(val))
 		{
 			return node;
 		}
-		
-		return	min(node.getLeftChild());
-			
-	}
-	
-	/*
-	 * 
-	 */
-	public Dollar max()
-	{
-		return max(root).getData();
-	}
-	
-	/*
-	 * 
-	 */
-	private BSTNode max(BSTNode node) 
-	{
-		if(node == null)
+		if(node.getData().isGreater(val))
 		{
-			return null;
+			return find(node.getLeftChild(),val);
 		}
-		if(node.getRightChild() == null)
+		else
 		{
-			return node;
+			return find(node.getRightChild(),val);
 		}
-		
-		return	max(node.getRightChild());
-			
 	}
 	
 	
@@ -174,6 +158,58 @@ private BSTNode root;
 		
 	}
 	
+	
+	/*
+	 * 
+	 */
+	public Dollar min()
+	{
+		return min(root).getData();
+	}
+	
+	/*
+	 * 
+	 */
+	private BSTNode min(BSTNode node) 
+	{
+		if(node == null)
+		{
+			return null;
+		}
+		if(node.getLeftChild() == null)
+		{
+			return node;
+		}
+		
+		return	min(node.getLeftChild());
+			
+	}
+	
+	/*
+	 * 
+	 */
+	public Dollar max()
+	{
+		return max(root).getData();
+	}
+	
+	/*
+	 * 
+	 */
+	private BSTNode max(BSTNode node) 
+	{
+		if(node == null)
+		{
+			return null;
+		}
+		if(node.getRightChild() == null)
+		{
+			return node;
+		}
+		
+		return	max(node.getRightChild());
+			
+	}
 	
 	
 	
