@@ -1,5 +1,6 @@
+
 public class BSTNode {
-	private Dollar data;
+	private Currency data;
 	private BSTNode rightChild;
 	private BSTNode leftChild;
 	
@@ -10,26 +11,26 @@ public class BSTNode {
 		leftChild = null;
 	}
 	
-	public BSTNode (Dollar d)
+	public BSTNode (Currency d)
 	{
 		data = d;
 		rightChild = null;
 		leftChild = null;
 	}
 	
-	public BSTNode (Dollar d, BSTNode r, BSTNode l)
+	public BSTNode (Currency d, BSTNode r, BSTNode l)
 	{
 		data = d;
 		rightChild = r;
 		leftChild = l;
 	}
 	
-	public Dollar getData()
+	public Currency getData()
 	{
 		return data;
 	}
 	
-	public void setData(Dollar d)
+	public void setData(Currency d)
 	{
 		data = d;
 	}
