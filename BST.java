@@ -251,7 +251,82 @@ private BSTNode root;
 		return container;
 	}
 	
+	/*
+	 * 
+	 */
+	public Queue preOrderTraversal()
+	{
+		 Queue test = new Queue();
+		 preOrderTraversal(test,root);
+		 return test;
+	}
+	/*
+	 * 
+	 */
+	private void preOrderTraversal(Queue test , BSTNode node)
+	{
+		
+		if(node == null)
+		{
+			return;
+		}
+		
+		test.enqueue(node.getData());
+		preOrderTraversal(test,node.getLeftChild());
+		preOrderTraversal(test,node.getRightChild());
+	}
 	
+	
+	/*
+	 * 
+	 */
+	public Queue postOrderTraversal()
+	{
+		 Queue test = new Queue();
+		 postOrderTraversal(test,root);
+		 return test;
+	}
+	/*
+	 * 
+	 */
+	private void postOrderTraversal(Queue test , BSTNode node)
+	{
+		
+		if(node == null)
+		{
+			return;
+		}
+		postOrderTraversal(test,node.getLeftChild());
+		postOrderTraversal(test,node.getRightChild());
+		test.enqueue(node.getData());
+	}
+	
+	
+	/*
+	 * 
+	 */
+	public Queue inOrderTraversal()
+	{
+		 Queue test = new Queue();
+		 inOrderTraversal(test,root);
+		 return test;
+	}
+	
+	
+	/*
+	 * 
+	 */
+	private void inOrderTraversal(Queue test , BSTNode node)
+	{
+		
+		if(node == null)
+		{
+			return;
+		}
+		inOrderTraversal(test,node.getLeftChild());
+		test.enqueue(node.getData());
+		inOrderTraversal(test,node.getRightChild());
+	}
 	
 	
 	
