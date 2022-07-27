@@ -47,7 +47,7 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public BSTNode find(Dollar val) throws Exception
+	public BSTNode find(Currency val) throws Exception
 	{
 		return find(root,val);
 	}
@@ -55,7 +55,7 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	private BSTNode find(BSTNode node, Dollar val) throws Exception
+	private BSTNode find(BSTNode node, Currency val) throws Exception
 	{
 		if(node == null || node.getData().isEqual(val))
 		{
@@ -76,7 +76,7 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public void insert(Dollar value) throws Exception
+	public void insert(Currency value) throws Exception
 	{
 		BSTNode newNode = new BSTNode(value);
 		root = insert(root,newNode);
@@ -109,7 +109,7 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public void delete(Dollar value) throws Exception
+	public void delete(Currency value) throws Exception
 	{
 		BSTNode newNode = new BSTNode(value);
 		root = delete(root,newNode);
@@ -148,8 +148,8 @@ private BSTNode root;
 			}
 			else
 			{
-				BSTNode largest = min(r.getRightChild());
-				Dollar value = largest.getData();
+				BSTNode largest = min(r.getRightChild()); // i decided to use the smallest in right subtree as sucessor.
+				Currency value = largest.getData();
 				delete(root,largest);
 				r.setData(value);
 			}
@@ -162,7 +162,7 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public Dollar min()
+	public Currency min()
 	{
 		return min(root).getData();
 	}
@@ -188,7 +188,7 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public Dollar max()
+	public Currency max()
 	{
 		return max(root).getData();
 	}
@@ -211,7 +211,45 @@ private BSTNode root;
 			
 	}
 	
-	
+	/*
+	 * 
+	 */
+	public Queue breadthTraversal() throws Exception
+	{
+		Queue container = new Queue();
+		
+		
+		Queue traverse = new Queue();
+		traverse.enqueue(root.getData());
+		
+		do
+		{
+			try
+			{
+				traverse.peekFront();
+			}
+			catch(Exception e)
+			{
+				break;
+			}
+			
+			BSTNode node = find(traverse.dequeue());
+			container.enqueue(node.getData());
+			
+			if(node.getLeftChild() != null)
+			{
+			  traverse.enqueue(node.getLeftChild().getData());
+			}
+	        if(node.getRightChild() != null) 
+	        {
+	        	traverse.enqueue(node.getRightChild().getData());
+	        }
+		}
+		
+		while(true);
+		
+		return container;
+	}
 	
 	
 	
