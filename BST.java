@@ -1,4 +1,5 @@
 
+
 public class BST {
 	
 private BSTNode root;
@@ -109,10 +110,18 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public void delete(Currency value) throws Exception
+	public boolean delete(Currency value) throws Exception
 	{
+		int count = count();
 		BSTNode newNode = new BSTNode(value);
 		root = delete(root,newNode);
+		int count1 = count();
+		if(count == count1)
+		{
+			return false;
+		}
+		return true;
+		
 	}
 	
 	/*
