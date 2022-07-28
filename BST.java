@@ -1,5 +1,4 @@
 
-
 public class BST {
 	
 private BSTNode root;
@@ -232,7 +231,7 @@ private BSTNode root;
 		Queue traverse = new Queue();
 		traverse.enqueue(root.getData());
 		
-		do
+		while(true)
 		{
 			try
 			{
@@ -256,7 +255,6 @@ private BSTNode root;
 	        }
 		}
 		
-		while(true);
 		
 		return container;
 	}
