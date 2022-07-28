@@ -348,7 +348,7 @@ private BSTNode root;
 		String preOrder = preOrderTraversal().printQueue();
 		String postOrder = postOrderTraversal().printQueue();
 		
-		return breadth + "/n" + inOrder + "/n" + preOrder + "/n" + postOrder;
+		return breadth + "\n" + inOrder + "\n" + preOrder + "\n" + postOrder;
 	}
 	
 	
