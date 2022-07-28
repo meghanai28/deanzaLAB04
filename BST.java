@@ -48,9 +48,10 @@ private BSTNode root;
 	/*
 	 * 
 	 */
-	public BSTNode find(Currency val) throws Exception
+	public Boolean find(Currency val) throws Exception
 	{
-		return find(root,val);
+		BSTNode test = find(root,val);
+		return test!=null;
 	}
 	
 	/*
@@ -242,7 +243,7 @@ private BSTNode root;
 				break;
 			}
 			
-			BSTNode node = find(traverse.dequeue());
+			BSTNode node = find(root,traverse.dequeue());
 			container.enqueue(node.getData());
 			
 			if(node.getLeftChild() != null)
@@ -269,6 +270,7 @@ private BSTNode root;
 		 preOrderTraversal(test,root);
 		 return test;
 	}
+	
 	/*
 	 * 
 	 */
@@ -295,6 +297,7 @@ private BSTNode root;
 		 postOrderTraversal(test,root);
 		 return test;
 	}
+	
 	/*
 	 * 
 	 */
@@ -335,6 +338,19 @@ private BSTNode root;
 		inOrderTraversal(test,node.getLeftChild());
 		test.enqueue(node.getData());
 		inOrderTraversal(test,node.getRightChild());
+	}
+	
+	/*
+	 * 
+	 */
+	public String print() throws Exception
+	{
+		String breadth = breadthTraversal().printQueue();
+		String inOrder = inOrderTraversal().printQueue();
+		String preOrder = preOrderTraversal().printQueue();
+		String postOrder = postOrderTraversal().printQueue();
+		
+		return breadth + "/n" + inOrder + "/n" + preOrder + "/n" + postOrder;
 	}
 	
 	
