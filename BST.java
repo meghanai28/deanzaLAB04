@@ -1,3 +1,4 @@
+import java.nio.BufferOverflowException;
 import java.nio.BufferUnderflowException;
 
 /**
@@ -68,11 +69,16 @@ private BSTNode root;
 	 * Find returns a boolean on if the given currency Value exists in the binary search tree starting at the 
 	 * root. 
 	 * @pre val - the Currency to be searched for in the Binary Search Tree
-	 * @post - calls a private method which recursively finds wether a currency value exists in the tree.
+	 * @post - calls a private method which recursively finds wether a currency value exists in the tree. If val is null
+	 * an exception thrown.
 	 * @return true if the currency val exists in the binary search tree, false otherwise. 
 	 */
 	public Boolean find(Currency val) throws Exception
 	{
+		if(val == null)
+		{
+			throw new IllegalArgumentException();
+		}
 		BSTNode test = find(root,val);
 		return test!=null;
 	}
@@ -107,12 +113,24 @@ private BSTNode root;
 	/**
 	 * Insert inserts a given currency value into the binary search tree starting at the root.
 	 * @pre The currency value to be entered into the binary search tree
-	 * @post calls a private recursive method to insert the currency value into the tree.
+	 * @post calls a private recursive method to insert the currency value into the tree. Throws exception
+	 * if the currency value is null, or if the insert causes memory to be too overflowed.
 	 */
 	public void insert(Currency value) throws Exception
 	{
-		BSTNode newNode = new BSTNode(value);
-		root = insert(root,newNode);
+		if(value == null)
+		{
+			throw new IllegalArgumentException();
+		}
+		try
+		{
+			BSTNode newNode = new BSTNode(value);
+			root = insert(root,newNode);
+		}
+		catch(OutOfMemoryError E)
+		{
+			throw new BufferOverflowException();
+		}
 	}
 	
 	/**
@@ -150,11 +168,16 @@ private BSTNode root;
 	 * If the value is not in the tree, the delete method returns false to signify nothing was 
 	 * deleted.
 	 * @pre value - The currency value to be deleted from the tree.
-	 * @post uses the private overloaded method delete, and the count method.
+	 * @post uses the private overloaded method delete, and the count method. If value is null then an exception
+	 * is thrown.
 	 * @return true, if a node was deleted and false when a node was not deleted.
 	 */
 	public boolean delete(Currency value) throws Exception
 	{
+		if(value == null)
+		{
+			throw new IllegalArgumentException();
+		}
 		int count = count();
 		BSTNode newNode = new BSTNode(value);
 		root = delete(root,newNode);
