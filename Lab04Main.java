@@ -14,7 +14,7 @@ public class Lab04Main {
 	
  public static void main(String [] args) throws Exception
  {
-	 String fileName = "Lab04FileOutput.txt";
+	 String fileName = "Lab04FileOutput.txt"; //u can also add ur file path here if needed.
 	 try {
 	      File lab04 = new File(fileName);
 	      lab04.createNewFile();
