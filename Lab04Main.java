@@ -243,15 +243,5 @@ public class Lab04Main {
 	      System.out.println("File was not correctly written to");
 	    }
  }
- public static void writeFile(String fileName, String input,boolean append)
- {
-	 try {
-	      FileWriter writer = new FileWriter(fileName,append);
-	      writer.write(input);
-	      writer.close();
-	    } catch (Exception e) {
-	      System.out.println("File was not correctly written to");
-	    }
- }
  
 }
