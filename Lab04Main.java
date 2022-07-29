@@ -225,6 +225,24 @@ public class Lab04Main {
 	readInput.close(); // cleanup
  }
 
+ /**
+  * This method writes into a given file, with a given input, and wether or not to overwrite the file or append.
+  * @pre fileName - name of the file.
+  * 	 input - input to be written into the file.
+  * 	 append - wether input should be appened or overwrite the file.
+  * @post has a try catch block to see if there are any exceptions when writing into the file, otherwise the input
+  * is written into the file.
+  */
+ public static void writeFile(String fileName, String input,boolean append)
+ {
+	 try {
+	      FileWriter writer = new FileWriter(fileName,append);
+	      writer.write(input);
+	      writer.close();
+	    } catch (Exception e) {
+	      System.out.println("File was not correctly written to");
+	    }
+ }
  public static void writeFile(String fileName, String input,boolean append)
  {
 	 try {
