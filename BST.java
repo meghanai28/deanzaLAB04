@@ -323,6 +323,10 @@ private BSTNode root;
 	{
 		Queue container = new Queue();
 		
+		if(root == null)
+		{
+			return container;
+		}
 		
 		Queue traverse = new Queue();
 		traverse.enqueue(root.getData());
