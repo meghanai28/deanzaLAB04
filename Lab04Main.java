@@ -142,7 +142,7 @@ public class Lab04Main {
 		
 	}
 	
-	
+	readInput.close();
  }
 
  
