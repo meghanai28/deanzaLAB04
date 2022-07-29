@@ -1,9 +1,20 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
 public class Lab04Main {
  
 	
  public static void main(String [] args) throws Exception
  {
+	 String fileName = "Lab04FileOutput.txt";
+	 FileWriter myWriter = new FileWriter(fileName);
+	 try {
+	      File lab04 = new File(fileName);
+	      lab04.createNewFile();
+	    } catch (Exception e) {
+	      System.out.println("File not sucesfully created.");
+	    }
+	 
 	System.out.println("Welcome to lab 04! Today we will be exploring Binary Search Trees!\n\n");
 	BST tree = new BST();
 	Dollar[] firstTwenty = {new Dollar(57.12),new Dollar(23.44), new Dollar(87.43), new Dollar(68.99),
@@ -17,7 +28,9 @@ public class Lab04Main {
 	}
 	
 	System.out.println("This is the traversals of our first 20 dollar objects inserted into our Binary Search Tree:\n");
-	String traversals = tree.print();
+	System.out.println("The traversals are in the specific sequence of breadth-first, in-order, pre-order, post-order!\n ");
+	String traversals = "\n\n"+ tree.print() + "\n ----";
+	writeFile(fileName,traversals,false);
 	System.out.println(traversals);
 	
 	Scanner readInput = new Scanner(System.in);
@@ -27,11 +40,12 @@ public class Lab04Main {
 		System.out.println("\n\nHere is a menu of operations you the user can do on our Binary Search Tree: \n"
 				+ "i: enter i to insert an dollar object into the Binary Search Tree\n"
 				+ "d: enter d to delete an dollar object from the Binary Search Tree\n"
+				+ "s: enter s to search if a dollar object is in the Binary Search Tree\n"
 				+ "p: enter p to print 4 traversals of the Binary Search Tree\n"
 				+ "q: enter q to exit the program.\n");
 		System.out.println("Please enter a menu option:\n");
 		String val = readInput.nextLine();
-		if(!(val.equalsIgnoreCase("i") || val.equalsIgnoreCase("d") || val.equalsIgnoreCase("p") || val.equalsIgnoreCase("q")))
+		if(!(val.equalsIgnoreCase("i") || val.equalsIgnoreCase("d") || val.equalsIgnoreCase("p") || val.equalsIgnoreCase("s") || val.equalsIgnoreCase("q")))
 		{
 			System.out.println("INVALID MENU OPTION! Please try again!\n");
 			continue;
@@ -51,7 +65,9 @@ public class Lab04Main {
 	 			}
 	 			catch(Exception e)
 	 			{
-	 				System.out.println("Not A Double! Please try again!\n");
+	 				String error = "\n\n"+ input + " Is not a Double! Please try again!\n\n";
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
 	 				continue;
 	 			}
 	 			Dollar insert;
@@ -61,14 +77,18 @@ public class Lab04Main {
 	 			}
 	 			catch(Exception e)
 	 			{
-	 				System.out.println(e.getMessage());
+	 				String error = "\n\n"+ dollarInput + ": " + e.getMessage();
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
             		continue;
 	 			}
 	 			
 	 			Boolean found = tree.find(insert);
 	 			if(found)
 	 			{
-	 				System.out.println(insert + " already exists in the tree! Please enter a value that is not a duplicate!\n");
+	 				String error = "\n\n"+ insert + " already exists in the tree! Please enter a value that is not a duplicate!\n";
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
 	 				continue;
 	 			}
 	 			
@@ -92,7 +112,9 @@ public class Lab04Main {
 	 			}
 	 			catch(Exception e)
 	 			{
-	 				System.out.println("Not A Double! Please try again!\n");
+	 				String error = "\n\n"+ input + " Is not a Double! Please try again!\n";
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
 	 				continue;
 	 			}
 	 			Dollar delete;
@@ -102,13 +124,17 @@ public class Lab04Main {
 	 			}
 	 			catch(Exception e)
 	 			{
-	 				System.out.println(e.getMessage());
+	 				String error = "\n\n"+ dollarInput + ": " + e.getMessage();
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
             		continue;
 	 			}
 	 			Boolean found = tree.find(delete);
 	 			if(!found)
 	 			{
-	 				System.out.println(delete + " does not exist in the tree! Please enter a value to delete that is in the tree!\n");
+	 				String error = "\n\n"+ delete + " does not exist in the tree! Please enter a value to delete that is in the tree!\n";
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
 	 				continue;
 	 			}
 	 			
@@ -120,11 +146,57 @@ public class Lab04Main {
 		 	}
 		 	continue;
 		 }
+		 if(value == 's') 
+		 {
+		 	while(true)
+		 	{
+		 		System.out.println("Please enter a dollar(double) value to search: \n");
+	 			String input = readInput.nextLine();
+	 			double dollarInput;
+	 			try
+	 			{
+	 				dollarInput = Double.parseDouble(input);
+	 			}
+	 			catch(Exception e)
+	 			{
+	 				String error = "\n\n"+ input + " Is not a Double! Please try again!\n";
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
+	 				continue;
+	 			}
+	 			Dollar search;
+	 			try
+	 			{
+	 				search = new Dollar(dollarInput);
+	 			}
+	 			catch(Exception e)
+	 			{
+	 				String error = "\n\n"+ dollarInput + ": " + e.getMessage();
+	 				writeFile(fileName,error,true);
+	 				System.out.println(error);
+            		continue;
+	 			}
+	 			
+	 			Boolean found = tree.find(search);
+	 			if(found)
+	 			{
+	 				System.out.println(search + " exists in the tree! It has been found! \n");
+	 			}
+	 			else
+	 			{
+	 				System.out.println(search + " does not exist in this tree! It has NOT been found! \n");
+	 			}
+	 			break;
+		 			
+		 	}
+		 	continue;
+		 }
 		 if(value == 'p') 
 		 {
 			 System.out.println("This is the traversals of our current Binary Search Tree!\n");
 		 	 System.out.println("The traversals are in the specific sequence of breadth-first, in-order, pre-order, post-order!\n ");
-		 	 String traversal = tree.print();
+		 	 String traversal = "\n\n"+ tree.print() + "\n ----";
+		 	 writeFile(fileName,traversal,true);
 		 	 System.out.println(traversal);
 		 	 continue;
 		 }
@@ -133,7 +205,8 @@ public class Lab04Main {
 			 System.out.println("Thanks for using our binary search tree!");
 		 	 System.out.println("This is the traversals of our current Binary Search Tree!\n");
 		 	 System.out.println("The traversals are in the specific sequence of breadth-first, in-order, pre-order, post-order!\n ");
-		 	 String traversal = tree.print();
+		 	 String traversal = "\n\n"+ tree.print() + "\n ----";
+		 	 writeFile(fileName,traversal,true);
 		 	 System.out.println(traversal);
 		 	 System.out.println("\n bye!");
 		 	 break;
@@ -145,6 +218,15 @@ public class Lab04Main {
 	readInput.close();
  }
 
- 
+ public static void writeFile(String fileName, String input,boolean append)
+ {
+	 try {
+	      FileWriter myWriter = new FileWriter(fileName,append);
+	      myWriter.write(input);
+	      myWriter.close();
+	    } catch (Exception e) {
+	      System.out.println("File was not correctly written to");
+	    }
+ }
  
 }
