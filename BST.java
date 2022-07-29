@@ -1,18 +1,31 @@
+import java.nio.BufferUnderflowException;
 
+/**
+ * Lab 04
+ * @author Lab Group 7: Meghana Indukuri & Joseph Khamisy
+ * This program creates the class BST (Binary Search Tree) with private root and methods that include adding,searching and 
+ * deleting nodes with Currency values.
+ * July 29th 2022
+ */
 public class BST {
 	
 private BSTNode root;
 	
-	/*
-	 * 
+	/**
+	 * Default Constructor which sets the private attribute root to null
+	 * @pre 
+	 * @post private attribute root set to null
 	 */
 	public BST ()
 	{
 		root = null;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Checks to see if the Binary Search Tree is empty.
+	 * @pre 
+	 * @post checks if the root is equal to null
+	 * @return returns true if the BST is empty, false if it is not empty.
 	 */
 	public boolean isEmpty()
 	{
@@ -20,16 +33,23 @@ private BSTNode root;
 	}
 	
 	
-	/*
-	 * 
+	/**
+	 * Count returns the number of nodes in the Binary Search Tree starting at the root.
+	 * @pre 
+	 * @post calls a private method which recursively finds the number of nodes in the tree.
+	 * @return int value with number of nodes.
 	 */
 	public int count ( )
 	{
 		return count(root);
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private overloaded method.Count returns the number of nodes in a BInary Search Tree 
+	 * starting at a given Node. This method counts number of nodes using recursion.
+	 * @pre Node which is where the counting of nodes will start
+	 * @post
+	 * @return int value with number of nodes starting at given node.
 	 */
 	private int count(BSTNode node)
 	{
@@ -44,8 +64,12 @@ private BSTNode root;
 		}
 	}
 	
-	/*
-	 * 
+	/**
+	 * Find returns a boolean on if the given currency Value exists in the binary search tree starting at the 
+	 * root. 
+	 * @pre val - the Currency to be searched for in the Binary Search Tree
+	 * @post - calls a private method which recursively finds wether a currency value exists in the tree.
+	 * @return true if the currency val exists in the binary search tree, false otherwise. 
 	 */
 	public Boolean find(Currency val) throws Exception
 	{
@@ -53,8 +77,14 @@ private BSTNode root;
 		return test!=null;
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private overloaded method for find. Find finds the BSTNode that contains the given
+	 * currency value starting at a given node. If it is not in the binary search tree starting at a given node, 
+	 * it returns a null node. 
+	 * @pre node - A BSTNode where the find method will start at. Val the currency value to be searched for.
+	 * @post
+	 * @return BSTNode, the node that contains the currency value. If the currency value does not exist in the tree
+	 * then null is returned. 
 	 */
 	private BSTNode find(BSTNode node, Currency val) throws Exception
 	{
@@ -74,8 +104,10 @@ private BSTNode root;
 	
 	
 	
-	/*
-	 * 
+	/**
+	 * Insert inserts a given currency value into the binary search tree starting at the root.
+	 * @pre The currency value to be entered into the binary search tree
+	 * @post calls a private recursive method to insert the currency value into the tree.
 	 */
 	public void insert(Currency value) throws Exception
 	{
@@ -83,8 +115,14 @@ private BSTNode root;
 		root = insert(root,newNode);
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private overloaded method for inserting a given node starting at a given root node. Returns
+	 * the root node of the new tree with the given node now inserted into the tree. This method uses recursion
+	 * to insert the node at the correct spot in the tree.
+	 * @pre r - the root of the tree where the node should be inserted.
+	 * 		newNode - the Node to be inserted into the tree
+	 * @post 
+	 * @return return the root of the tree with the newNode inserted into the tree. 
 	 */
 	private BSTNode insert(BSTNode r, BSTNode newNode) throws Exception
 	{
@@ -107,8 +145,13 @@ private BSTNode root;
 		
 	}
 	
-	/*
-	 * 
+	/**
+	 * This method delete deletes a given currency value from the binary search tree.
+	 * If the value is not in the tree, the delete method returns false to signify nothing was 
+	 * deleted.
+	 * @pre value - The currency value to be deleted from the tree.
+	 * @post uses the private overloaded method delete, and the count method.
+	 * @return true, if a node was deleted and false when a node was not deleted.
 	 */
 	public boolean delete(Currency value) throws Exception
 	{
@@ -124,8 +167,13 @@ private BSTNode root;
 		
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private overloaded method that deletes a given node starting at a given root. This 
+	 * method uses recursion to delete the given node. It returns the root of the tree with the deleted node.
+	 * @pre r - the root of the tree where the node should be deleted.
+	 * 		newNode - the Node to be deleted from the tree
+	 * @post makes use of the private recurisve overloaded method min. 
+	 * @return the root of the tree with the newly deleted node. 
 	 */
 	private BSTNode delete(BSTNode r, BSTNode newNode) throws Exception
 	{
@@ -168,16 +216,27 @@ private BSTNode root;
 	}
 	
 	
-	/*
-	 * 
+	/**
+	 * Returns the minimum currency value starting at the root.
+	 * @pre
+	 * @post makes use of private overloaded recursive method min. Throws an exception if the tree is null.
+	 * @return the currency value of the minimum value in the binary search tree.
 	 */
 	public Currency min()
 	{
+		if(root == null)
+		{
+			throw new BufferUnderflowException();
+		}
 		return min(root).getData();
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private recurisve method that finds the minimum node starting at a given node. It returns the 
+	 * node that is the minimum.
+	 * @pre the node which the search for minimum node will begin.
+	 * @post 
+	 * @return the Node that is the minimum node.
 	 */
 	private BSTNode min(BSTNode node) 
 	{
@@ -194,16 +253,27 @@ private BSTNode root;
 			
 	}
 	
-	/*
-	 * 
+	/**
+	 * Returns the maximum currency value starting at the root.
+	 * @pre
+	 * @post makes use of private overloaded recursive method max. Throws an exception if the tree is null.
+	 * @return the currency value of the maximum value in the binary search tree.
 	 */
 	public Currency max()
 	{
+		if(root == null)
+		{
+			throw new BufferUnderflowException();
+		}
 		return max(root).getData();
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private recurisve method that finds the maximum node starting at a given node. It returns the 
+	 * node that is the maximum.
+	 * @pre the node which the search for maximum node will begin.
+	 * @post 
+	 * @return the Node that is the maximum node.
 	 */
 	private BSTNode max(BSTNode node) 
 	{
@@ -220,8 +290,11 @@ private BSTNode root;
 			
 	}
 	
-	/*
-	 * 
+	/**
+	 * This method returns a queue containing the traversal of the binary search tree in breadth order traversal.
+	 * @pre 
+	 * @post this method is done iteratively using two queues.
+	 * @return a queue containing the breadth order traversal of the binary search tree.
 	 */
 	public Queue breadthTraversal() throws Exception
 	{
@@ -259,8 +332,11 @@ private BSTNode root;
 		return container;
 	}
 	
-	/*
-	 * 
+	/**
+	 * Returns a queue with the binary search tree in preOrder traversal.
+	 * @pre
+	 * @post uses a private, overloaded recursive method to get the queue with pre order traversal
+	 * @return the queue with currency values from the binary search tree in pre order traversal.
 	 */
 	public Queue preOrderTraversal()
 	{
@@ -269,8 +345,12 @@ private BSTNode root;
 		 return test;
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private overloaded recurisve method, that traverses through the tree starting at a given node
+	 * in pre order manner. 
+	 * @pre test - the Queue which will contain the preOrder traversal of the tree.
+	 * 		node - the node which the traversal will start at.
+	 * @post
 	 */
 	private void preOrderTraversal(Queue test , BSTNode node)
 	{
@@ -286,8 +366,11 @@ private BSTNode root;
 	}
 	
 	
-	/*
-	 * 
+	/**
+	 * Returns a queue with the binary search tree in postOrder traversal.
+	 * @pre
+	 * @post uses a private, overloaded recursive method to get the queue with post order traversal
+	 * @return the queue with currency values from the binary search tree in post order traversal.
 	 */
 	public Queue postOrderTraversal()
 	{
@@ -296,8 +379,12 @@ private BSTNode root;
 		 return test;
 	}
 	
-	/*
-	 * 
+	/**
+	 * This is a private overloaded recurisve method, that traverses through the tree starting at a given node
+	 * in post order manner. 
+	 * @pre test - the Queue which will contain the postOrder traversal of the tree.
+	 * 		node - the node which the traversal will start at.
+	 * @post
 	 */
 	private void postOrderTraversal(Queue test , BSTNode node)
 	{
@@ -312,8 +399,11 @@ private BSTNode root;
 	}
 	
 	
-	/*
-	 * 
+	/**
+	 * Returns a queue with the binary search tree in inOrder traversal.
+	 * @pre
+	 * @post uses a private, overloaded recursive method to get the queue with inorder traversal
+	 * @return the queue with currency values from the binary search tree in inorder traversal.
 	 */
 	public Queue inOrderTraversal()
 	{
@@ -323,8 +413,12 @@ private BSTNode root;
 	}
 	
 	
-	/*
-	 * 
+	/**
+	 * This is a private overloaded recurisve method, that traverses through the tree starting at a given node
+	 * in  inorder manner. 
+	 * @pre test - the Queue which will contain the inOrder traversal of the tree.
+	 * 		node - the node which the traversal will start at.
+	 * @post
 	 */
 	private void inOrderTraversal(Queue test , BSTNode node)
 	{
@@ -338,8 +432,11 @@ private BSTNode root;
 		inOrderTraversal(test,node.getRightChild());
 	}
 	
-	/*
-	 * 
+	/**
+	 * Returns a string with all the 4 traversals in the specific order of breadth, inorder, preorder, and postorder.
+	 * @pre
+	 * @post
+	 * @return string with all 4 traversals
 	 */
 	public String print() throws Exception
 	{
