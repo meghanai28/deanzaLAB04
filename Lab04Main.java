@@ -68,7 +68,7 @@ public class Lab04Main {
 	 			Boolean found = tree.find(insert);
 	 			if(found)
 	 			{
-	 				System.out.println("This value already exists in the tree! Please enter a value that is not a duplicate!\n");
+	 				System.out.println(insert + " already exists in the tree! Please enter a value that is not a duplicate!\n");
 	 				continue;
 	 			}
 	 			
@@ -108,7 +108,7 @@ public class Lab04Main {
 	 			Boolean found = tree.find(delete);
 	 			if(!found)
 	 			{
-	 				System.out.println("This value does not exist in the tree! Please enter a value to delete that is in the tree!\n");
+	 				System.out.println(delete + " does not exist in the tree! Please enter a value to delete that is in the tree!\n");
 	 				continue;
 	 			}
 	 			
