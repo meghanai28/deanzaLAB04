@@ -1,13 +1,20 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
+
+/**
+ * Lab 04
+ * @author Lab Group 7: Meghana Indukuri & Joseph Khamisy
+ * This program creates the main, where the binary search tree is tested with various operations. This main allows
+ * for user interactivity and prints the value to both a file and console. 
+ * July 29th 2022
+ */
+
 public class Lab04Main {
- 
 	
  public static void main(String [] args) throws Exception
  {
 	 String fileName = "Lab04FileOutput.txt";
-	 FileWriter myWriter = new FileWriter(fileName);
 	 try {
 	      File lab04 = new File(fileName);
 	      lab04.createNewFile();
@@ -214,16 +221,16 @@ public class Lab04Main {
 		
 		
 	}
-	
-	readInput.close();
+	tree = null; // cleanup
+	readInput.close(); // cleanup
  }
 
  public static void writeFile(String fileName, String input,boolean append)
  {
 	 try {
-	      FileWriter myWriter = new FileWriter(fileName,append);
-	      myWriter.write(input);
-	      myWriter.close();
+	      FileWriter writer = new FileWriter(fileName,append);
+	      writer.write(input);
+	      writer.close();
 	    } catch (Exception e) {
 	      System.out.println("File was not correctly written to");
 	    }
