@@ -221,6 +221,7 @@ public class Lab04Main {
 		
 		
 	}
+	tree.empty(); // cleanup
 	tree = null; // cleanup
 	readInput.close(); // cleanup
  }
