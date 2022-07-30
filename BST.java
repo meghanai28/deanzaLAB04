@@ -168,7 +168,7 @@ private BSTNode root;
 	 * If the value is not in the tree, the delete method returns false to signify nothing was 
 	 * deleted.
 	 * @pre value - The currency value to be deleted from the tree.
-	 * @post uses the private overloaded method delete, and the count method. If value is null then an exception
+	 * @post uses the private overloaded method delete, and the find method. If value is null then an exception
 	 * is thrown.
 	 * @return true, if a node was deleted and false when a node was not deleted.
 	 */
@@ -178,14 +178,13 @@ private BSTNode root;
 		{
 			throw new IllegalArgumentException();
 		}
-		int count = count();
-		BSTNode newNode = new BSTNode(value);
-		root = delete(root,newNode);
-		int count1 = count();
-		if(count == count1)
+		if(!find(value))
 		{
 			return false;
 		}
+		BSTNode newNode = new BSTNode(value);
+		root = delete(root,newNode);
+		
 		return true;
 		
 	}
