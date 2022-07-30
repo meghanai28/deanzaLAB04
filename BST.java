@@ -348,10 +348,10 @@ private BSTNode root;
 			{
 			  traverse.enqueue(node.getLeftChild().getData());
 			}
-	        if(node.getRightChild() != null) 
-	        {
-	        	traverse.enqueue(node.getRightChild().getData());
-	        }
+	        	if(node.getRightChild() != null) 
+	       		{
+	        	  traverse.enqueue(node.getRightChild().getData());
+	        	}
 		}
 		
 		
