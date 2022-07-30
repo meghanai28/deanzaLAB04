@@ -127,7 +127,7 @@ private BSTNode root;
 			BSTNode newNode = new BSTNode(value);
 			root = insert(root,newNode);
 		}
-		catch(OutOfMemoryError E)
+		catch(OutOfMemoryError E) // overflow in tree 
 		{
 			throw new BufferOverflowException();
 		}
@@ -178,7 +178,7 @@ private BSTNode root;
 		{
 			throw new IllegalArgumentException();
 		}
-		if(!find(value))
+		if(!find(value)) // check if value exists in tree
 		{
 			return false;
 		}
@@ -213,19 +213,19 @@ private BSTNode root;
 		}
 		else
 		{
-			if(r.getRightChild()== null && r.getLeftChild()== null)
+			if(r.getRightChild()== null && r.getLeftChild()== null) // both child null case
 			{
 				return null;
 			}
-			else if(r.getRightChild() == null)
+			else if(r.getRightChild() == null) // right child null case
 			{
 				return r.getLeftChild();
 			}
-			else if(r.getLeftChild()== null)
+			else if(r.getLeftChild()== null) // left child null case
 			{
 				return r.getRightChild();
 			}
-			else
+			else // both child not null case
 			{
 				BSTNode largest = min(r.getRightChild()); // i decided to use the smallest in right subtree as sucessor.
 				Currency value = largest.getData();
