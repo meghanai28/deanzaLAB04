@@ -474,7 +474,15 @@ private BSTNode root;
 		return breadth + "\n\n" + inOrder + "\n\n" + preOrder + "\n\n" + postOrder;
 	}
 	
-	
+	/**
+	* Emptys the tree by setting the root to null
+	* @pre 
+	* @post root is set to null.
+	*/
+	public void empty()
+	{
+		root = null;
+	}
 	
 	
 }
